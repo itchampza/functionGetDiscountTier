@@ -1,0 +1,13 @@
+{
+  "name": "learn-ava",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "test": "nyc ava"
+  },
+  "devDependencies": {
+    "ava": "^0.21.0",
+    "nyc": "^11.0.3"
+  }
+}

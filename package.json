@@ -4,10 +4,17 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "test": "nyc ava"
+    "test": "nyc ava src/**/*.test.js",
+    "lint": "eslint --ext .js src"
   },
   "devDependencies": {
     "ava": "^0.21.0",
-    "nyc": "^11.0.3"
+    "babel-eslint": "^7.1.1",
+    "nyc": "^11.0.3",
+    "eslint": "^3.19.0",
+    "eslint-config-standard": "^6.2.1",
+    "eslint-friendly-formatter": "^3.0.0",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1"
   }
 }

@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "test": "nyc ava src/**/*.test.js",
-    "lint": "eslint --ext .js src"
+    "lint": "eslint --ext .js src",
+    "report": "nyc report --reporter=html"
   },
   "devDependencies": {
     "ava": "^0.21.0",

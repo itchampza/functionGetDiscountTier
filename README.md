@@ -1,5 +1,5 @@
 # tdd-ava-starter
-A starter kit for learn TDD with AVA.
+A starter kit for learning TDD with AVA.
 
 ## Usage
 ```

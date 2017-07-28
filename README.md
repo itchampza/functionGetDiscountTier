@@ -17,6 +17,11 @@ $ yarn
 $ yarn test
 ```
 
+## Watch it
+```
+$ yarn test -- --watch
+```
+
 ## Code coverage
 ```
 $ yarn report

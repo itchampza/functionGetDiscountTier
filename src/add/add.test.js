@@ -1,6 +1,6 @@
 import test from 'ava'
-const add = require('./add')
+import add from './add'
 
 test('add', function (t) {
-  t.is(add(1, 2), 3)
+  t.is(add(1, 1), 2)
 })

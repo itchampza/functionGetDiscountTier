@@ -9,7 +9,7 @@ $ yarn global add ava
 ```
 
 ```
-$ git clone https://github.com/n9ti/ava-tdd-starter.git learn-tdd-with-ava
+$ git clone https://github.com/saturday-js/ava-tdd-starter.git learn-tdd-with-ava
 $ cd learn-tdd-with-ava
 $ yarn
 ```

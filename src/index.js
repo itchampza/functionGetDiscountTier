@@ -1,4 +1,4 @@
-const add = require('./add/add')
+const same = require('./same/same')
 
-let result = add(1024, 768)
+let result = same(1024)
 console.log(result)

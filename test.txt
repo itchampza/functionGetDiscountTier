@@ -3,4 +3,26 @@
     'tre3': 80,
     5: 60
   }
+
+   {
+      "price": 200,
+      "promotion" : {
+        "tier3": 170,
+        "tier5": 150
+      }
+    },
+    {
+      "price": 300,
+      "promotion" : {
+        "tier3": 260,
+        "tier5": 220
+      }
+    },
+    {
+      "price": 500,
+      "promotion" : {
+        "tier3": 450,
+        "tier5": 400
+      }
+    }
 }

@@ -1,31 +1,19 @@
-[
-    {
-      "price": 100,
-      "promotion" : {
-        "tier3": 80,
-        "tier5": 60
-      }
+{
+    "100": {
+      "tier3": 80,
+      "tier5": 60
     },
-    {
-      "price": 200,
-      "promotion" : {
-        "tier3": 170,
-        "tier5": 150
-      }
+    "200": {
+      "tier3": 170,
+      "tier5": 150
     },
-    {
-      "price": 300,
-      "promotion" : {
-        "tier3": 260,
-        "tier5": 220
-      }
+    "300": {
+      "tier3": 260,
+      "tier5": 220
     },
-    {
-      "price": 500,
-      "promotion" : {
-        "tier3": 450,
-        "tier5": 400
-      }
+    "500": {
+      "tier3": 450,
+      "tier5": 400
     }
-]
+}
   

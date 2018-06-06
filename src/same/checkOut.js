@@ -1,26 +1,17 @@
 function calculate (item, promotion) {
-  var returnItem = []
   item.sort((a, b) => (b.price - a.price))
-  while (item.length !== 0) {
-    if (item.length >= 5) {
-      for (var i = 0; i < item.length; i++) {
-        item[i].priceDiscount = promotion.find(pro => pro.id === item[i].id).promotion['5']
-      }
-      returnItem = item.splice(0, item.length - (item.length % 5))
-    } else if (item.length >= 3) {
-      for (var j = 0; j < item.length; j++) {
-        item[j].priceDiscount = promotion.find(pro => pro.id === item[j].id).promotion['3']
-      }
-      returnItem.push(...(item.splice(0, item.length - (item.length % 3))))
+  var case5 = (item.length / 5 | 0) * 5 // find amount of case 5 item
+  var case3 = ((item.length - case5) / 3 | 0) * 3 // find amount of case 3 item
+  for (var i = 0; i < item.length; i++) {
+    if (i < case5) {
+      item[i].priceDiscount = promotion.find(pro => pro.price === item[i].price).promotion.tier5
+    } else if (i < (case5 + case3)) {
+      item[i].priceDiscount = promotion.find(pro => pro.price === item[i].price).promotion.tier3
     } else {
-      for (var k = 0; k < item.length; k++) {
-        item[k].priceDiscount = promotion.find(pro => pro.id === item[k].id).price
-      }
-      returnItem.push(...item)
-      item = []
+      item[i].priceDiscount = item[i].price
     }
   }
-  return returnItem
+  return item
 }
 
 module.exports = calculate

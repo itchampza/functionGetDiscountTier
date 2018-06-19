@@ -2,528 +2,331 @@ const test = require('ava')
 const checkOut = require('./checkOut')
 const promotions = require('./promotions.json')
 
-test('1 return 100 ', function (t) {
+test('1 return 590 ', function (t) {
   var items = [
-    { id: '001', name: 'A', price: 100 }
+    { price: 590 }
   ]
   var result = [
-    { id: '001', name: 'A', price: 100, priceDiscount: 100 }
+    { price: 590, priceDiscount: 590 }
   ]
   t.deepEqual(checkOut(items, promotions), result)
 })
 
-test('2 return 100 200 ', function (t) {
+test('2 return 790 590 ', function (t) {
   var items = [
-    { id: '001', name: 'A', price: 100 },
-    { id: '002', name: 'B', price: 200 }
+    { price: 590 },
+    { price: 790 }
   ]
   var result = [
-    { id: '002', name: 'B', price: 200, priceDiscount: 200 },
-    { id: '001', name: 'A', price: 100, priceDiscount: 100 }
+    { price: 790, priceDiscount: 790 },
+    { price: 590, priceDiscount: 590 }
   ]
   t.deepEqual(checkOut(items, promotions), result)
 })
 
-test('3 return 260 170 80', function (t) {
+test('3 return 870 670 470', function (t) {
   var items = [
-    { id: '001', name: 'A', price: 100 },
-    { id: '002', name: 'B', price: 200 },
-    { id: '003', name: 'C', price: 300 }
+    { price: 590 },
+    { price: 790 },
+    { price: 990 }
   ]
   var result = [
-    { id: '003', name: 'C', price: 300, priceDiscount: 260 },
-    { id: '002', name: 'B', price: 200, priceDiscount: 170 },
-    { id: '001', name: 'A', price: 100, priceDiscount: 80 }
+    { price: 990, priceDiscount: 870 },
+    { price: 790, priceDiscount: 670 },
+    { price: 590, priceDiscount: 470 }
   ]
   t.deepEqual(checkOut(items, promotions), result)
 })
 
-test('4 return 450 260 170 100', function (t) {
+test('4 return 970 870 670 590', function (t) {
   var items = [
-    { id: '001', name: 'A', price: 100 },
-    { id: '002', name: 'B', price: 200 },
-    { id: '003', name: 'C', price: 300 },
-    { id: '004', name: 'D', price: 500 }
+    { price: 590 },
+    { price: 790 },
+    { price: 990 },
+    { price: 1090 }
   ]
   var result = [
-    { id: '004', name: 'D', price: 500, priceDiscount: 450 },
-    { id: '003', name: 'C', price: 300, priceDiscount: 260 },
-    { id: '002', name: 'B', price: 200, priceDiscount: 170 },
-    { id: '001', name: 'A', price: 100, priceDiscount: 100 }
+    { price: 1090, priceDiscount: 970 },
+    { price: 990, priceDiscount: 870 },
+    { price: 790, priceDiscount: 670 },
+    { price: 590, priceDiscount: 590 }
   ]
   t.deepEqual(checkOut(items, promotions), result)
 })
 
-test('5 return 400 220 150 60 60', function (t) {
+test('5 return 890 790 590 390 390', function (t) {
   var items = [
-    { id: '001', name: 'A', price: 100 },
-    { id: '002', name: 'B', price: 200 },
-    { id: '003', name: 'C', price: 300 },
-    { id: '004', name: 'D', price: 500 },
-    { id: '006', name: 'A', price: 100 }
+    { price: 590 },
+    { price: 790 },
+    { price: 990 },
+    { price: 1090 },
+    { price: 590 }
   ]
   var result = [
-    { id: '004', name: 'D', price: 500, priceDiscount: 400 },
-    { id: '003', name: 'C', price: 300, priceDiscount: 220 },
-    { id: '002', name: 'B', price: 200, priceDiscount: 150 },
-    { id: '001', name: 'A', price: 100, priceDiscount: 60 },
-    { id: '006', name: 'A', price: 100, priceDiscount: 60 }
+    { price: 1090, priceDiscount: 890 },
+    { price: 990, priceDiscount: 790 },
+    { price: 790, priceDiscount: 590 },
+    { price: 590, priceDiscount: 390 },
+    { price: 590, priceDiscount: 390 }
   ]
   t.deepEqual(checkOut(items, promotions), result)
 })
 
-test('6 return 400 220 150 60 60 100', function (t) {
+test('6 return 1590 890 790 590 390 590 ', function (t) {
   var items = [
-    { id: '001', name: 'A', price: 100 },
-    { id: '002', name: 'B', price: 200 },
-    { id: '003', name: 'C', price: 300 },
-    { id: '004', name: 'D', price: 500 },
-    { id: '006', name: 'A', price: 100 },
-    { id: '007', name: 'A', price: 100 }
+    { price: 590 },
+    { price: 790 },
+    { price: 990 },
+    { price: 1090 },
+    { price: 590 },
+    { price: 1990 }
   ]
   var result = [
-    { id: '004', name: 'D', price: 500, priceDiscount: 400 },
-    { id: '003', name: 'C', price: 300, priceDiscount: 220 },
-    { id: '002', name: 'B', price: 200, priceDiscount: 150 },
-    { id: '001', name: 'A', price: 100, priceDiscount: 60 },
-    { id: '006', name: 'A', price: 100, priceDiscount: 60 },
-    { id: '007', name: 'A', price: 100, priceDiscount: 100 }
+    { price: 1990, priceDiscount: 1590 },
+    { price: 1090, priceDiscount: 890 },
+    { price: 990, priceDiscount: 790 },
+    { price: 790, priceDiscount: 590 },
+    { price: 590, priceDiscount: 390 },
+    { price: 590, priceDiscount: 590 }
   ]
   t.deepEqual(checkOut(items, promotions), result)
 })
 
-test('7 return 400 220 150 150 60 100 100', function (t) {
+test('9 return 1590 1290 1190 890 790 670 470 470 590', function (t) {
   var items = [
-    { id: '001', name: 'A', price: 100 },
-    { id: '002', name: 'B', price: 200 },
-    { id: '003', name: 'C', price: 300 },
-    { id: '004', name: 'D', price: 500 },
-    { id: '006', name: 'A', price: 100 },
-    { id: '007', name: 'A', price: 100 },
-    { id: '008', name: 'B', price: 200 }
+    { price: 1990 },
+    { price: 1590 },
+    { price: 1390 },
+    { price: 590 },
+    { price: 990 },
+    { price: 790 },
+    { price: 1090 },
+    { price: 590 },
+    { price: 590 }
   ]
   var result = [
-    { id: '004', name: 'D', price: 500, priceDiscount: 400 },
-    { id: '003', name: 'C', price: 300, priceDiscount: 220 },
-    { id: '002', name: 'B', price: 200, priceDiscount: 150 },
-    { id: '008', name: 'B', price: 200, priceDiscount: 150 },
-    { id: '001', name: 'A', price: 100, priceDiscount: 60 },
-    { id: '006', name: 'A', price: 100, priceDiscount: 100 },
-    { id: '007', name: 'A', price: 100, priceDiscount: 100 }
+    { price: 1990, priceDiscount: 1590 },
+    { price: 1590, priceDiscount: 1290 },
+    { price: 1390, priceDiscount: 1190 },
+    { price: 1090, priceDiscount: 890 },
+    { price: 990, priceDiscount: 790 },
+
+    { price: 790, priceDiscount: 670 },
+    { price: 590, priceDiscount: 470 },
+    { price: 590, priceDiscount: 470 },
+
+    { price: 590, priceDiscount: 590 }
   ]
   t.deepEqual(checkOut(items, promotions), result)
 })
 
-test('8 return 400 400 220 150 150 80 80 80', function (t) {
+test('10 return 890 790 590 590 590 590 590 390 390 390', function (t) {
   var items = [
-    { id: '001', name: 'A', price: 100 },
-    { id: '002', name: 'B', price: 200 },
-    { id: '003', name: 'C', price: 300 },
-    { id: '004', name: 'D', price: 500 },
-    { id: '006', name: 'A', price: 100 },
-    { id: '007', name: 'A', price: 100 },
-    { id: '008', name: 'B', price: 200 },
-    { id: '009', name: 'D', price: 500 }
+    { price: 590 },
+    { price: 790 },
+    { price: 990 },
+    { price: 1090 },
+    { price: 590 },
+    { price: 590 },
+    { price: 790 },
+    { price: 790 },
+    { price: 790 },
+    { price: 790 }
   ]
   var result = [
-    { id: '004', name: 'D', price: 500, priceDiscount: 400 },
-    { id: '009', name: 'D', price: 500, priceDiscount: 400 },
-    { id: '003', name: 'C', price: 300, priceDiscount: 220 },
-    { id: '002', name: 'B', price: 200, priceDiscount: 150 },
-    { id: '008', name: 'B', price: 200, priceDiscount: 150 },
-    { id: '001', name: 'A', price: 100, priceDiscount: 80 },
-    { id: '006', name: 'A', price: 100, priceDiscount: 80 },
-    { id: '007', name: 'A', price: 100, priceDiscount: 80 }
+    { price: 1090, priceDiscount: 890 },
+    { price: 990, priceDiscount: 790 },
+    { price: 790, priceDiscount: 590 },
+    { price: 790, priceDiscount: 590 },
+    { price: 790, priceDiscount: 590 },
+    { price: 790, priceDiscount: 590 },
+    { price: 790, priceDiscount: 590 },
+    { price: 590, priceDiscount: 390 },
+    { price: 590, priceDiscount: 390 },
+    { price: 590, priceDiscount: 390 }
   ]
   t.deepEqual(checkOut(items, promotions), result)
 })
 
-test('12 return 400 400 220 220 150 150 60 60 60 60 100 100', function (t) {
+test('12 return 890 890 790 590 590 590 590 590 390 390 590 590', function (t) {
   var items = [
-    { id: '001', name: 'A', price: 100 },
-    { id: '002', name: 'B', price: 200 },
-    { id: '003', name: 'C', price: 300 },
-    { id: '004', name: 'D', price: 500 },
-    { id: '006', name: 'A', price: 100 },
-    { id: '007', name: 'A', price: 100 },
-    { id: '008', name: 'B', price: 200 },
-    { id: '009', name: 'D', price: 500 },
-    { id: '010', name: 'C', price: 300 },
-    { id: '011', name: 'A', price: 100 },
-    { id: '012', name: 'B', price: 200 },
-    { id: '001', name: 'A', price: 100 }
+    { price: 590 },
+    { price: 790 },
+    { price: 990 },
+    { price: 1090 },
+    { price: 590 },
+    { price: 590 },
+    { price: 790 },
+    { price: 790 },
+    { price: 790 },
+    { price: 790 },
+    { price: 1090 },
+    { price: 590 }
   ]
   var result = [
-    { id: '004', name: 'D', price: 500, priceDiscount: 400 },
-    { id: '009', name: 'D', price: 500, priceDiscount: 400 },
-    { id: '003', name: 'C', price: 300, priceDiscount: 220 },
-    { id: '010', name: 'C', price: 300, priceDiscount: 220 },
-    { id: '008', name: 'B', price: 200, priceDiscount: 150 },
-    { id: '002', name: 'B', price: 200, priceDiscount: 150 },
-    { id: '012', name: 'B', price: 200, priceDiscount: 150 },
-    { id: '006', name: 'A', price: 100, priceDiscount: 60 },
-    { id: '007', name: 'A', price: 100, priceDiscount: 60 },
-    { id: '011', name: 'A', price: 100, priceDiscount: 60 },
-    { id: '001', name: 'A', price: 100, priceDiscount: 100 },
-    { id: '001', name: 'A', price: 100, priceDiscount: 100 }
+    { price: 1090, priceDiscount: 890 },
+    { price: 1090, priceDiscount: 890 },
+    { price: 990, priceDiscount: 790 },
+    { price: 790, priceDiscount: 590 },
+    { price: 790, priceDiscount: 590 },
+    { price: 790, priceDiscount: 590 },
+    { price: 790, priceDiscount: 590 },
+    { price: 790, priceDiscount: 590 },
+    { price: 590, priceDiscount: 390 },
+    { price: 590, priceDiscount: 390 },
+    { price: 590, priceDiscount: 590 },
+    { price: 590, priceDiscount: 590 }
   ]
   t.deepEqual(checkOut(items, promotions), result)
 })
 
-test('13', function (t) {
+test('14 return 1490 1290 890 890 790 590 590 590 590 590 470 470 470 590', function (t) {
   var items = [
-    { id: '001', name: 'A', price: 100 },
-    { id: '002', name: 'B', price: 200 },
-    { id: '003', name: 'C', price: 300 },
-    { id: '004', name: 'D', price: 500 },
-    { id: '006', name: 'A', price: 100 },
-    { id: '007', name: 'A', price: 100 },
-    { id: '008', name: 'B', price: 200 },
-    { id: '009', name: 'D', price: 500 },
-    { id: '010', name: 'C', price: 300 },
-    { id: '011', name: 'A', price: 100 },
-    { id: '012', name: 'B', price: 200 },
-    { id: '001', name: 'A', price: 100 },
-    { id: '004', name: 'D', price: 500 }
+    { price: 590 },
+    { price: 790 },
+    { price: 990 },
+    { price: 1090 },
+    { price: 590 },
+    { price: 590 },
+    { price: 790 },
+    { price: 790 },
+    { price: 790 },
+    { price: 790 },
+    { price: 1090 },
+    { price: 590 },
+    { price: 1790 },
+    { price: 1590 }
   ]
   var result = [
-    { id: '004', name: 'D', price: 500, priceDiscount: 400 },
-    { id: '004', name: 'D', price: 500, priceDiscount: 400 },
-    { id: '009', name: 'D', price: 500, priceDiscount: 400 },
-    { id: '003', name: 'C', price: 300, priceDiscount: 220 },
-    { id: '010', name: 'C', price: 300, priceDiscount: 220 },
-    { id: '008', name: 'B', price: 200, priceDiscount: 150 },
-    { id: '002', name: 'B', price: 200, priceDiscount: 150 },
-    { id: '012', name: 'B', price: 200, priceDiscount: 150 },
-    { id: '007', name: 'A', price: 100, priceDiscount: 60 },
-    { id: '011', name: 'A', price: 100, priceDiscount: 60 },
-    { id: '006', name: 'A', price: 100, priceDiscount: 80 },
-    { id: '001', name: 'A', price: 100, priceDiscount: 80 },
-    { id: '001', name: 'A', price: 100, priceDiscount: 80 }
+    { price: 1790, priceDiscount: 1490 },
+    { price: 1590, priceDiscount: 1290 },
+    { price: 1090, priceDiscount: 890 },
+    { price: 1090, priceDiscount: 890 },
+    { price: 990, priceDiscount: 790 },
+
+    { price: 790, priceDiscount: 590 },
+    { price: 790, priceDiscount: 590 },
+    { price: 790, priceDiscount: 590 },
+    { price: 790, priceDiscount: 590 },
+    { price: 790, priceDiscount: 590 },
+
+    { price: 590, priceDiscount: 470 },
+    { price: 590, priceDiscount: 470 },
+    { price: 590, priceDiscount: 470 },
+
+    { price: 590, priceDiscount: 590 }
   ]
   t.deepEqual(checkOut(items, promotions), result)
 })
 
-test('9 return 400 400 220 150 150 170 80 80 100', function (t) {
+test('19 return 1590 1490 1490 14901290 1190 1190 1190 1090 890 890 790 590 590 590 470 470 470 590', function (t) {
   var items = [
-    { id: '001', name: 'A', price: 100 },
-    { id: '002', name: 'B', price: 200 },
-    { id: '003', name: 'C', price: 300 },
-    { id: '004', name: 'D', price: 500 },
-    { id: '006', name: 'A', price: 100 },
-    { id: '007', name: 'A', price: 100 },
-    { id: '008', name: 'B', price: 200 },
-    { id: '009', name: 'D', price: 500 },
-    { id: '002', name: 'B', price: 200 }
+    { price: 590 },
+    { price: 790 },
+    { price: 990 },
+    { price: 1090 },
+    { price: 590 },
+    { price: 590 },
+    { price: 790 },
+    { price: 790 },
+    { price: 1390 },
+    { price: 1390 },
+    { price: 1090 },
+    { price: 590 },
+    { price: 1790 },
+    { price: 1590 },
+    { price: 1290 },
+    { price: 1790 },
+    { price: 1790 },
+    { price: 1990 },
+    { price: 1390 }
   ]
   var result = [
-    { id: '004', name: 'D', price: 500, priceDiscount: 400 },
-    { id: '009', name: 'D', price: 500, priceDiscount: 400 },
-    { id: '003', name: 'C', price: 300, priceDiscount: 220 },
-    { id: '002', name: 'B', price: 200, priceDiscount: 150 },
-    { id: '008', name: 'B', price: 200, priceDiscount: 150 },
-    { id: '002', name: 'B', price: 200, priceDiscount: 170 },
-    { id: '001', name: 'A', price: 100, priceDiscount: 80 },
-    { id: '006', name: 'A', price: 100, priceDiscount: 80 },
-    { id: '007', name: 'A', price: 100, priceDiscount: 100 }
+    { price: 1990, priceDiscount: 1590 },
+    { price: 1790, priceDiscount: 1490 },
+    { price: 1790, priceDiscount: 1490 },
+    { price: 1790, priceDiscount: 1490 },
+    { price: 1590, priceDiscount: 1290 },
+
+    { price: 1390, priceDiscount: 1190 },
+    { price: 1390, priceDiscount: 1190 },
+    { price: 1390, priceDiscount: 1190 },
+    { price: 1290, priceDiscount: 1090 },
+    { price: 1090, priceDiscount: 890 },
+
+    { price: 1090, priceDiscount: 890 },
+    { price: 990, priceDiscount: 790 },
+    { price: 790, priceDiscount: 590 },
+    { price: 790, priceDiscount: 590 },
+    { price: 790, priceDiscount: 590 },
+
+    { price: 590, priceDiscount: 470 },
+    { price: 590, priceDiscount: 470 },
+    { price: 590, priceDiscount: 470 },
+
+    { price: 590, priceDiscount: 590 }
   ]
   t.deepEqual(checkOut(items, promotions), result)
 })
 
-test('11 return 400 400 400 220 220 150 150 150  60 60 100', function (t) {
+test('24 return 1590 1590 1590 1490 1490 1490 1290 1290 1290 1190 1190 1190 1090 1090 890 890 790 590 590 590 470 470 470 590 ', function (t) {
   var items = [
-    { id: '001', name: 'A', price: 100 },
-    { id: '002', name: 'B', price: 200 },
-    { id: '003', name: 'C', price: 300 },
-    { id: '004', name: 'D', price: 500 },
-    { id: '006', name: 'A', price: 100 },
-    { id: '007', name: 'A', price: 100 },
-    { id: '008', name: 'B', price: 200 },
-    { id: '009', name: 'D', price: 500 },
-    { id: '002', name: 'B', price: 200 },
-    { id: '004', name: 'D', price: 500 },
-    { id: '003', name: 'C', price: 300 }
-  ]
-  var result = [
-    { id: '004', name: 'D', price: 500, priceDiscount: 400 },
-    { id: '009', name: 'D', price: 500, priceDiscount: 400 },
-    { id: '004', name: 'D', price: 500, priceDiscount: 400 },
-    { id: '003', name: 'C', price: 300, priceDiscount: 220 },
-    { id: '003', name: 'C', price: 300, priceDiscount: 220 },
-    { id: '002', name: 'B', price: 200, priceDiscount: 150 },
-    { id: '008', name: 'B', price: 200, priceDiscount: 150 },
-    { id: '002', name: 'B', price: 200, priceDiscount: 150 },
-    { id: '006', name: 'A', price: 100, priceDiscount: 60 },
-    { id: '001', name: 'A', price: 100, priceDiscount: 60 },
-    { id: '007', name: 'A', price: 100, priceDiscount: 100 }
-  ]
-  t.deepEqual(checkOut(items, promotions), result)
-})
+    { price: 590 },
+    { price: 790 },
+    { price: 990 },
+    { price: 1090 },
+    { price: 590 },
+    { price: 590 },
+    { price: 790 },
+    { price: 790 },
+    { price: 1390 },
+    { price: 1390 },
+    { price: 1090 },
+    { price: 590 },
+    { price: 1790 },
+    { price: 1590 },
+    { price: 1290 },
+    { price: 1790 },
+    { price: 1790 },
+    { price: 1990 },
+    { price: 1390 },
+    { price: 1990 },
+    { price: 1990 },
+    { price: 1590 },
+    { price: 1590 },
+    { price: 1290 }
 
-test('13 return 400 400 400 220 220 150 150 150 150 60 80 80 80', function (t) {
-  var items = [
-    { id: '001', name: 'A', price: 100 },
-    { id: '002', name: 'B', price: 200 },
-    { id: '003', name: 'C', price: 300 },
-    { id: '004', name: 'D', price: 500 },
-    { id: '006', name: 'A', price: 100 },
-    { id: '007', name: 'A', price: 100 },
-    { id: '008', name: 'B', price: 200 },
-    { id: '009', name: 'D', price: 500 },
-    { id: '002', name: 'B', price: 200 },
-    { id: '004', name: 'D', price: 500 },
-    { id: '003', name: 'C', price: 300 },
-    { id: '011', name: 'A', price: 100 },
-    { id: '012', name: 'B', price: 200 }
   ]
   var result = [
-    { id: '004', name: 'D', price: 500, priceDiscount: 400 },
-    { id: '004', name: 'D', price: 500, priceDiscount: 400 },
-    { id: '009', name: 'D', price: 500, priceDiscount: 400 },
-    { id: '003', name: 'C', price: 300, priceDiscount: 220 },
-    { id: '003', name: 'C', price: 300, priceDiscount: 220 },
-    { id: '008', name: 'B', price: 200, priceDiscount: 150 },
-    { id: '002', name: 'B', price: 200, priceDiscount: 150 },
-    { id: '012', name: 'B', price: 200, priceDiscount: 150 },
-    { id: '002', name: 'B', price: 200, priceDiscount: 150 },
-    { id: '007', name: 'A', price: 100, priceDiscount: 60 },
-    { id: '006', name: 'A', price: 100, priceDiscount: 80 },
-    { id: '011', name: 'A', price: 100, priceDiscount: 80 },
-    { id: '001', name: 'A', price: 100, priceDiscount: 80 }
-  ]
-  t.deepEqual(checkOut(items, promotions), result)
-})
-test('10 return 400 400 220 220 150 150 60 60 60 60', function (t) {
-  var items = [
-    { id: '001', name: 'A', price: 100 },
-    { id: '002', name: 'B', price: 200 },
-    { id: '003', name: 'C', price: 300 },
-    { id: '004', name: 'D', price: 500 },
-    { id: '006', name: 'A', price: 100 },
-    { id: '011', name: 'A', price: 100 },
-    { id: '007', name: 'A', price: 100 },
-    { id: '008', name: 'B', price: 200 },
-    { id: '009', name: 'D', price: 500 },
-    { id: '010', name: 'C', price: 300 }
-  ]
-  var result = [
-    { id: '004', name: 'D', price: 500, priceDiscount: 400 },
-    { id: '009', name: 'D', price: 500, priceDiscount: 400 },
-    { id: '003', name: 'C', price: 300, priceDiscount: 220 },
-    { id: '010', name: 'C', price: 300, priceDiscount: 220 },
-    { id: '002', name: 'B', price: 200, priceDiscount: 150 },
-    { id: '008', name: 'B', price: 200, priceDiscount: 150 },
-    { id: '001', name: 'A', price: 100, priceDiscount: 60 },
-    { id: '006', name: 'A', price: 100, priceDiscount: 60 },
-    { id: '011', name: 'A', price: 100, priceDiscount: 60 },
-    { id: '007', name: 'A', price: 100, priceDiscount: 60 }
-  ]
-  t.deepEqual(checkOut(items, promotions), result)
-})
+    { price: 1990, priceDiscount: 1590 },
+    { price: 1990, priceDiscount: 1590 },
+    { price: 1990, priceDiscount: 1590 },
+    { price: 1790, priceDiscount: 1490 },
+    { price: 1790, priceDiscount: 1490 },
 
-test('12 return 400 400 400 220 220 150 150 60 60 60 100 100', function (t) {
-  var items = [
-    { id: '001', name: 'A', price: 100 },
-    { id: '002', name: 'B', price: 200 },
-    { id: '003', name: 'C', price: 300 },
-    { id: '004', name: 'D', price: 500 },
-    { id: '006', name: 'A', price: 100 },
-    { id: '011', name: 'A', price: 100 },
-    { id: '007', name: 'A', price: 100 },
-    { id: '008', name: 'B', price: 200 },
-    { id: '009', name: 'D', price: 500 },
-    { id: '010', name: 'C', price: 300 },
-    { id: '001', name: 'A', price: 100 },
-    { id: '004', name: 'D', price: 500 }
-  ]
-  var result = [
-    { id: '004', name: 'D', price: 500, priceDiscount: 400 },
-    { id: '004', name: 'D', price: 500, priceDiscount: 400 },
-    { id: '009', name: 'D', price: 500, priceDiscount: 400 },
-    { id: '003', name: 'C', price: 300, priceDiscount: 220 },
-    { id: '010', name: 'C', price: 300, priceDiscount: 220 },
-    { id: '002', name: 'B', price: 200, priceDiscount: 150 },
-    { id: '008', name: 'B', price: 200, priceDiscount: 150 },
-    { id: '006', name: 'A', price: 100, priceDiscount: 60 },
-    { id: '011', name: 'A', price: 100, priceDiscount: 60 },
-    { id: '001', name: 'A', price: 100, priceDiscount: 60 },
-    { id: '001', name: 'A', price: 100, priceDiscount: 100 },
-    { id: '007', name: 'A', price: 100, priceDiscount: 100 }
-  ]
-  t.deepEqual(checkOut(items, promotions), result)
-})
+    { price: 1790, priceDiscount: 1490 },
+    { price: 1590, priceDiscount: 1290 },
+    { price: 1590, priceDiscount: 1290 },
+    { price: 1590, priceDiscount: 1290 },
+    { price: 1390, priceDiscount: 1190 },
 
-test('15 return 400 400 400 400 220 220 220 150 150 150 150 60 60 60 60', function (t) {
-  var items = [
-    { id: '001', name: 'A', price: 100 },
-    { id: '002', name: 'B', price: 200 },
-    { id: '003', name: 'C', price: 300 },
-    { id: '004', name: 'D', price: 500 },
-    { id: '006', name: 'A', price: 100 },
-    { id: '007', name: 'A', price: 100 },
-    { id: '008', name: 'B', price: 200 },
-    { id: '009', name: 'D', price: 500 },
-    { id: '002', name: 'B', price: 200 },
-    { id: '004', name: 'D', price: 500 },
-    { id: '003', name: 'C', price: 300 },
-    { id: '011', name: 'A', price: 100 },
-    { id: '012', name: 'B', price: 200 },
-    { id: '009', name: 'D', price: 500 },
-    { id: '010', name: 'C', price: 300 }
-  ]
-  var result = [
-    { id: '009', name: 'D', price: 500, priceDiscount: 400 },
-    { id: '004', name: 'D', price: 500, priceDiscount: 400 },
-    { id: '009', name: 'D', price: 500, priceDiscount: 400 },
-    { id: '004', name: 'D', price: 500, priceDiscount: 400 },
-    { id: '003', name: 'C', price: 300, priceDiscount: 220 },
-    { id: '003', name: 'C', price: 300, priceDiscount: 220 },
-    { id: '010', name: 'C', price: 300, priceDiscount: 220 },
-    { id: '002', name: 'B', price: 200, priceDiscount: 150 },
-    { id: '002', name: 'B', price: 200, priceDiscount: 150 },
-    { id: '008', name: 'B', price: 200, priceDiscount: 150 },
-    { id: '012', name: 'B', price: 200, priceDiscount: 150 },
-    { id: '007', name: 'A', price: 100, priceDiscount: 60 },
-    { id: '011', name: 'A', price: 100, priceDiscount: 60 },
-    { id: '006', name: 'A', price: 100, priceDiscount: 60 },
-    { id: '001', name: 'A', price: 100, priceDiscount: 60 }
-  ]
-  t.deepEqual(checkOut(items, promotions), result)
-})
+    { price: 1390, priceDiscount: 1190 },
+    { price: 1390, priceDiscount: 1190 },
+    { price: 1290, priceDiscount: 1090 },
+    { price: 1290, priceDiscount: 1090 },
+    { price: 1090, priceDiscount: 890 },
 
-test('14 return 400 400 400 220 220 220 150 150 150 60 80 80 80 100', function (t) {
-  var items = [
-    { id: '001', name: 'A', price: 100 },
-    { id: '002', name: 'B', price: 200 },
-    { id: '003', name: 'C', price: 300 },
-    { id: '004', name: 'D', price: 500 },
-    { id: '006', name: 'A', price: 100 },
-    { id: '011', name: 'A', price: 100 },
-    { id: '007', name: 'A', price: 100 },
-    { id: '008', name: 'B', price: 200 },
-    { id: '009', name: 'D', price: 500 },
-    { id: '010', name: 'C', price: 300 },
-    { id: '001', name: 'A', price: 100 },
-    { id: '004', name: 'D', price: 500 },
-    { id: '008', name: 'B', price: 200 },
-    { id: '003', name: 'C', price: 300 }
-  ]
-  var result = [
-    { id: '004', name: 'D', price: 500, priceDiscount: 400 },
-    { id: '004', name: 'D', price: 500, priceDiscount: 400 },
-    { id: '009', name: 'D', price: 500, priceDiscount: 400 },
-    { id: '003', name: 'C', price: 300, priceDiscount: 220 },
-    { id: '003', name: 'C', price: 300, priceDiscount: 220 },
-    { id: '010', name: 'C', price: 300, priceDiscount: 220 },
-    { id: '008', name: 'B', price: 200, priceDiscount: 150 },
-    { id: '002', name: 'B', price: 200, priceDiscount: 150 },
-    { id: '008', name: 'B', price: 200, priceDiscount: 150 },
-    { id: '007', name: 'A', price: 100, priceDiscount: 60 },
-    { id: '001', name: 'A', price: 100, priceDiscount: 80 },
-    { id: '011', name: 'A', price: 100, priceDiscount: 80 },
-    { id: '006', name: 'A', price: 100, priceDiscount: 80 },
-    { id: '001', name: 'A', price: 100, priceDiscount: 100 }
-  ]
-  t.deepEqual(checkOut(items, promotions), result)
-})
+    { price: 1090, priceDiscount: 890 },
+    { price: 990, priceDiscount: 790 },
+    { price: 790, priceDiscount: 590 },
+    { price: 790, priceDiscount: 590 },
+    { price: 790, priceDiscount: 590 },
 
-test('19 return 400 400 400 400 220 220 220 220 150 150 150 150 60 60 60 80 80 80 100', function (t) {
-  var items = [
-    { id: '001', name: 'A', price: 100 },
-    { id: '002', name: 'B', price: 200 },
-    { id: '003', name: 'C', price: 300 },
-    { id: '004', name: 'D', price: 500 },
-    { id: '006', name: 'A', price: 100 },
-    { id: '011', name: 'A', price: 100 },
-    { id: '007', name: 'A', price: 100 },
-    { id: '008', name: 'B', price: 200 },
-    { id: '009', name: 'D', price: 500 },
-    { id: '010', name: 'C', price: 300 },
-    { id: '001', name: 'A', price: 100 },
-    { id: '004', name: 'D', price: 500 },
-    { id: '008', name: 'B', price: 200 },
-    { id: '003', name: 'C', price: 300 },
-    { id: '007', name: 'A', price: 100 },
-    { id: '008', name: 'B', price: 200 },
-    { id: '009', name: 'D', price: 500 },
-    { id: '010', name: 'C', price: 300 },
-    { id: '001', name: 'A', price: 100 }
-  ]
-  var result = [
-    { id: '004', name: 'D', price: 500, priceDiscount: 400 },
-    { id: '004', name: 'D', price: 500, priceDiscount: 400 },
-    { id: '009', name: 'D', price: 500, priceDiscount: 400 },
-    { id: '009', name: 'D', price: 500, priceDiscount: 400 },
-    { id: '010', name: 'C', price: 300, priceDiscount: 220 },
-    { id: '003', name: 'C', price: 300, priceDiscount: 220 },
-    { id: '003', name: 'C', price: 300, priceDiscount: 220 },
-    { id: '010', name: 'C', price: 300, priceDiscount: 220 },
-    { id: '008', name: 'B', price: 200, priceDiscount: 150 },
-    { id: '002', name: 'B', price: 200, priceDiscount: 150 },
-    { id: '008', name: 'B', price: 200, priceDiscount: 150 },
-    { id: '008', name: 'B', price: 200, priceDiscount: 150 },
-    { id: '001', name: 'A', price: 100, priceDiscount: 60 },
-    { id: '006', name: 'A', price: 100, priceDiscount: 60 },
-    { id: '007', name: 'A', price: 100, priceDiscount: 60 },
-    { id: '011', name: 'A', price: 100, priceDiscount: 80 },
-    { id: '001', name: 'A', price: 100, priceDiscount: 80 },
-    { id: '007', name: 'A', price: 100, priceDiscount: 80 },
-    { id: '001', name: 'A', price: 100, priceDiscount: 100 }
-  ]
-  t.deepEqual(checkOut(items, promotions), result)
-})
-test('24 return 400 400 400 400 220 220 220 220 150 150 150 150 60 60 60 80 80 80 100', function (t) {
-  var items = [
-    { id: '001', name: 'A', price: 100 },
-    { id: '002', name: 'B', price: 200 },
-    { id: '003', name: 'C', price: 300 },
-    { id: '004', name: 'D', price: 500 },
-    { id: '006', name: 'A', price: 100 },
-    { id: '011', name: 'A', price: 100 },
-    { id: '007', name: 'A', price: 100 },
-    { id: '004', name: 'D', price: 500 },
-    { id: '003', name: 'C', price: 300 },
-    { id: '008', name: 'B', price: 200 },
-    { id: '009', name: 'D', price: 500 },
-    { id: '010', name: 'C', price: 300 },
-    { id: '001', name: 'A', price: 100 },
-    { id: '004', name: 'D', price: 500 },
-    { id: '009', name: 'D', price: 500 },
-    { id: '008', name: 'B', price: 200 },
-    { id: '003', name: 'C', price: 300 },
-    { id: '007', name: 'A', price: 100 },
-    { id: '008', name: 'B', price: 200 },
-    { id: '003', name: 'C', price: 300 },
-    { id: '009', name: 'D', price: 500 },
-    { id: '010', name: 'C', price: 300 },
-    { id: '001', name: 'A', price: 100 },
-    { id: '010', name: 'C', price: 300 }
-  ]
-  var result = [
-    { id: '004', name: 'D', price: 500, priceDiscount: 400 },
-    { id: '004', name: 'D', price: 500, priceDiscount: 400 },
-    { id: '009', name: 'D', price: 500, priceDiscount: 400 },
-    { id: '009', name: 'D', price: 500, priceDiscount: 400 },
-    { id: '004', name: 'D', price: 500, priceDiscount: 400 },
-    { id: '009', name: 'D', price: 500, priceDiscount: 400 },
-    { id: '010', name: 'C', price: 300, priceDiscount: 220 },
-    { id: '010', name: 'C', price: 300, priceDiscount: 220 },
-    { id: '003', name: 'C', price: 300, priceDiscount: 220 },
-    { id: '010', name: 'C', price: 300, priceDiscount: 220 },
-    { id: '003', name: 'C', price: 300, priceDiscount: 220 },
-    { id: '003', name: 'C', price: 300, priceDiscount: 220 },
-    { id: '003', name: 'C', price: 300, priceDiscount: 220 },
-    { id: '008', name: 'B', price: 200, priceDiscount: 150 },
-    { id: '008', name: 'B', price: 200, priceDiscount: 150 },
-    { id: '008', name: 'B', price: 200, priceDiscount: 150 },
-    { id: '002', name: 'B', price: 200, priceDiscount: 150 },
-    { id: '007', name: 'A', price: 100, priceDiscount: 60 },
-    { id: '011', name: 'A', price: 100, priceDiscount: 60 },
-    { id: '007', name: 'A', price: 100, priceDiscount: 60 },
-    { id: '001', name: 'A', price: 100, priceDiscount: 80 },
-    { id: '006', name: 'A', price: 100, priceDiscount: 80 },
-    { id: '001', name: 'A', price: 100, priceDiscount: 80 },
-    { id: '001', name: 'A', price: 100, priceDiscount: 100 }
+    { price: 590, priceDiscount: 470 },
+    { price: 590, priceDiscount: 470 },
+    { price: 590, priceDiscount: 470 },
+
+    { price: 590, priceDiscount: 590 }
   ]
   t.deepEqual(checkOut(items, promotions), result)
 })
